@@ -1,0 +1,8 @@
+import com.sap.gateway.ip.core.customdev.util.Message;
+import java.util.HashMap;
+import java.lang.*;
+def Message processData(Message message)
+{
+    map = message.getProperties();
+    return message;
+}
