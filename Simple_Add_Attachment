@@ -1,0 +1,20 @@
+import org.apache.camel.impl.DefaultAttachment
+import javax.mail.util.ByteArrayDataSource
+
+def Message processData(Message message) {
+    //Body 
+       def body = message.getBody();
+            
+
+         def id = map.get("requestData");
+        def bytes = map.get("requestData");
+        def dataSource = new ByteArrayDataSource(bytes, 'Text/CSV') //Set MIME type
+        def attachment = new DefaultAttachment(dataSource)
+        message.addAttachmentObject("Request.txt", attachment)   //Add request attachment
+         id = map.get("responseData");
+         bytes = map.get("responseData");
+         dataSource = new ByteArrayDataSource(bytes, 'Text/CSV')
+         attachment = new DefaultAttachment(dataSource)
+        message.addAttachmentObject("Response.txt", attachment)
+       
+       return message
