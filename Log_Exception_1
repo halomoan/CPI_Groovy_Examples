@@ -1,0 +1,14 @@
+import com.sap.gateway.ip.core.customdev.util.Message;
+import java.util.HashMap;
+def Message processData(Message message)
+{
+       def map  = message.getProperties();
+       def ex   = map.get("CamelExceptionCaught");
+       if (ex != null)
+       {
+           exceptionText    = ex.getMessage();
+           def messageLog   = messageLogFactory.getMessageLog(message);
+           messageLog.addAttachmentAsString("Exception", exceptionText,"application/text");
+       }
+       return message;
+}
